@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CapstoneProjectToDoApplication.Models.ToDoTask>
+
+@{
+    ViewData["Title"] = "TasksDueDateToday";
+}
+
+<h1 class="display-4">Tasks that are due today</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-controller="ToDoTasks" class="btn btn-secondary" asp-action="Index">Back to Active Tasks</a>
+</div>
+<center><img src="~/css/picture2.jpg" /></center>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CapstoneProjectToDoApplication.Models.ToDoList>
+
+@{
+    ViewData["Title"] = "ShowHidden";
+}
+
+<h1>Hidden Lists</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                    <a class="btn btn-secondary" asp-action="Unhide" asp-route-id="@item.Id">Unhide</a>
+                    <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-secondary" asp-action="Index">Back to Lists</a>
+</div>
+<center><img src="~/css/picture1.jpg" /></center>

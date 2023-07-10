@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CapstoneProjectToDoApplication.Models.ToDoList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    #comment_box1 {
+        background-color: lightsteelblue;
+        width: 830px;
+        height: 180px;
+    }
+</style>
+
+<h1 class="display-4">Your lists</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Create New List</a>
+</p>
+<div>
+    <a class="btn btn-secondary" asp-action="ShowHidden">Show hidden lists</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                    <a asp-controller="ToDoTasks" class="btn btn-dark" asp-action="GetTasks" asp-route-id="@item.Id">Active Tasks</a>
+                    <a asp-controller="ToDoTasks" class="btn btn-success" asp-action="CompletedTasks" asp-route-id="@item.Id">Completed Tasks</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit Title</a>
+                    <a class="btn btn-dark" asp-action="Hide" asp-route-id="@item.Id">Hide</a>
+                    <a class="btn btn-dark" asp-action="Copy" asp-route-id="@item.Id">Copy</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="ToDoTasks" class="btn btn-secondary" asp-action="Index">Show all tasks</a>
+</div>
+<center><img src="~/css/picture1.jpg" /></center>
+
